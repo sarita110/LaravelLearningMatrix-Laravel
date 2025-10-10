@@ -1,0 +1,25 @@
+/node_modules
+/public/build
+/vendor
+/.idea
+/.vscode
+.env
+.env.backup
+.env.production
+.phpunit.result.cache
+database/database.sqlite
+Homestead.json
+Homestead.yaml
+npm-debug.log
+yarn-error.log
+/storage/logs/*.log
+/bootstrap/cache/*.php
+/storage/framework/sessions/*
+/storage/framework/cache/*
+/storage/framework/views/*
+!storage/framework/sessions/.gitkeep
+!storage/framework/cache/.gitkeep
+!storage/framework/views/.gitkeep
+
+# Ignore the history generator script
+generate_history.sh
