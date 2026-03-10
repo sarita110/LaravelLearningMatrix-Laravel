@@ -12,6 +12,7 @@ use Illuminate\Auth\Events\Registered;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Facades\URL; 
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -30,6 +31,11 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+        // 2. ADDED THIS CHECK: Force HTTPS in production!
+        if (env('APP_ENV') === 'production') {
+            URL::forceScheme('https');
+        }
+
         // ── Event → Listener registrations ───────────────────────
         Event::listen(ConceptPublished::class, NotifySubscribers::class);
         Event::listen(ConceptPublished::class, LogConceptPublished::class);
