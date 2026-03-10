@@ -4,6 +4,16 @@
 
 ---
 
+## Admin Login
+
+| Field | Value |
+|-------|-------|
+| Email | `sarita@learningmatrix.test` |
+| Password | `password` |
+| Is Admin | Yes (can delete any concept) |
+
+---
+
 ## What Is This?
 
 The **Laravel Learning Matrix** is a web application for documenting and browsing PHP/Laravel concepts, built as a hands-on learning project. The twist: the app *is* the curriculum.
@@ -202,17 +212,7 @@ curl -X POST http://127.0.0.1:8000/api/concepts \
 | `php artisan make:job X` | Job class |
 | `php artisan make:policy X --model=Y` | Policy scoped to a model |
 
----
 
-## Admin Login
-
-| Field | Value |
-|-------|-------|
-| Email | `sarita@learningmatrix.test` |
-| Password | `password` |
-| Is Admin | Yes (can delete any concept) |
-
----
 
 *Built as a learning project for Laravel development.*
 *See `laravel-learning-matrix-curriculum.docx` for the full 7-phase curriculum.*
