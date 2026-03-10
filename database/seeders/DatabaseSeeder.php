@@ -18,6 +18,7 @@ class DatabaseSeeder extends Seeder
         $admin = User::factory()->admin()->create([
             'name'  => 'Sarita Admin',
             'email' => 'sarita@learningmatrix.test',
+            'is_approved' => true,
         ]);
 
         // ── 2. Create realistic categories ────────────────────────
