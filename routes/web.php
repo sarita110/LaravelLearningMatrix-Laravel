@@ -4,6 +4,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ConceptController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Artisan;
 
 // ─── HOME ─────────────────────────────────────────────────────────────────────
 Route::get('/', function () {
@@ -59,3 +60,18 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(fun
 
 // ─── AUTH ROUTES (provided by Laravel Breeze) ─────────────────────────────────
 require __DIR__.'/auth.php';
+
+// A temporary route to set up the database on Render
+Route::get('/setup-live-db', function () {
+    try {
+        // This runs `php artisan migrate:fresh --seed --force`
+        Artisan::call('migrate:fresh', [
+            '--force' => true,
+            '--seed' => true
+        ]);
+        
+        return 'SUCCESS! Database migrated and seeded. You can now go to /login';
+    } catch (\Exception $e) {
+        return 'ERROR: ' . $e->getMessage();
+    }
+});
