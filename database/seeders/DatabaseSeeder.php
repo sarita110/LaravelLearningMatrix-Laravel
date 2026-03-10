@@ -27,11 +27,11 @@ class DatabaseSeeder extends Seeder
         $this->seedRealConcepts($admin, $categories);
 
         // ── 4. Create extra fake concepts to fill out the app ─────
-        $concepts = Concept::factory()
-            ->count(15)
-            ->published()
-            ->recycle($categories)
-            ->create(['created_by' => $admin->id]);
+        // $concepts = Concept::factory()
+        //     ->count(15)
+        //     ->published()
+        //     ->recycle($categories)
+        //     ->create(['created_by' => $admin->id]);
 
         // ── 5. Create and attach tags ──────────────────────────────
         $tags = $this->createTags();
