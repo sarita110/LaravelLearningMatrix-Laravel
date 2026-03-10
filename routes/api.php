@@ -4,6 +4,7 @@ use App\Http\Controllers\Api\ConceptApiController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Artisan;
 
 // ─── TOKEN ISSUANCE ──────────────────────────────────────────────────────────
 // POST /api/tokens/create
@@ -57,4 +58,18 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
         'email'    => $request->user()->email,
         'is_admin' => $request->user()->is_admin,
     ]);
+});
+
+// A temporary route to set up the database on Render (API routes don't use sessions!)
+Route::get('/setup-live-db', function () {
+    try {
+        Artisan::call('migrate:fresh', [
+            '--force' => true,
+            '--seed' => true
+        ]);
+        
+        return response()->json(['message' => 'SUCCESS! Database migrated and seeded. You can now go to /login']);
+    } catch (\Exception $e) {
+        return response()->json(['error' => $e->getMessage()], 500);
+    }
 });
